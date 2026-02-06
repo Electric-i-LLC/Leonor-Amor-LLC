@@ -1,0 +1,70 @@
+{% extends "abstracts/panel.html" %}
+
+{% block content %}
+    <div style="margin-left: 20%; margin-right: 7%; padding:1px 16px;height:1000px;">
+
+        <h3>Messages</h3>
+        <div class="admin-new-orders">
+            <div class="content-section">
+                <form method="POST" action="">
+                    {{ form.hidden_tag() }}
+                    <fieldset class="form-group">
+                        <legend class="border-bottom mb-4">Create a New Message!</legend>
+                        
+                        <div class="form-group">
+                            {{ form.email.label(class="form-control-label") }}
+
+                            <!-- Error Messages -->
+                            {% if form.email.errors %}
+                                {{ form.email(class="form-control form-control-lg is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.email.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                <!-- User Input -->
+                                {{ form.email(class="form-control form-control-lg") }}
+                            {% endif %}
+
+                            {{ form.title.label(class="form-control-label") }}
+
+                            <!-- Error Messages -->
+                            {% if form.title.errors %}
+                                {{ form.title(class="form-control form-control-lg is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.title.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                <!-- User Input -->
+                                {{ form.title(class="form-control form-control-lg") }}
+                            {% endif %}
+
+                            {{ form.description.label(class="form-control-label") }}
+
+                            <!-- Error Messages -->
+                            {% if form.description.errors %}
+                                {{ form.description(class="form-control form-control-lg is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.description.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                <!-- User Input -->
+                                {{ form.description(class="form-control form-control-lg") }}
+                            {% endif %}
+
+
+
+                            <div class="form-group pt-3">
+                                {{ form.submit(class="btn btn-outline-info") }}
+                            </div>
+                        </div>
+        </div>
+
+
+    </div>
+{% endblock content %}

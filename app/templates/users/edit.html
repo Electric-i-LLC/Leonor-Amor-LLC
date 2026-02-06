@@ -1,0 +1,38 @@
+{% extends "abstracts/panel.html" %}
+
+{% block content %}
+    <div style="margin-left: 20%; margin-right: 7%; padding:1px 16px;height:1000px;">
+
+        <h3>Categories - Create</h3>
+        <div class="admin-new-orders">
+            <div class="content-section">
+                <form method="POST" action="">
+                    {{ form.hidden_tag() }}
+                    <fieldset class="form-group">
+                        <legend class="border-bottom mb-4">Create a New Category!</legend>
+                        
+                        <div class="form-group">
+                            {{ form.name.label(class="form-control-label") }}
+
+                            <!-- Error Messages -->
+                            {% if form.name.errors %}
+                                {{ form.name(class="form-control form-control-lg is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.name.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                <!-- User Input -->
+                                {{ form.name(class="form-control form-control-lg") }}
+                            {% endif %}
+
+                            <div class="form-group pt-3">
+                                {{ form.submit(class="btn btn-outline-info") }}
+                            </div>
+                        </div>
+        </div>
+
+
+    </div>
+{% endblock content %}

@@ -1,0 +1,241 @@
+{% extends "abstracts/index.html" %}
+
+{% block content %}
+
+<div class="css-gray-background">
+<div class="container py-4 css-gray-background">
+    <div class="row justify-content-center text-center mb-5">
+        <div class="col-md-8">
+            <h2 class="display-5">About Leonor Amor</h2>
+            <p class="lead mt-3">
+                Curated event design and planning for unforgettable moments.
+                From luxury weddings to corporate celebrations, we craft every detail with precision and care.
+            </p>
+        </div>
+    </div>
+
+    <div class="row text-center">
+        <!-- Team Member 1 -->
+        <div class="col-md-4 mb-4">
+            <div class="card border-0">
+                <img src="{{ url_for('static', filename='img/lead-planner.jpg') }}" class="card-img-top rounded-circle team-photo" alt="Team Member 1">
+                <div class="card-body">
+                    <h5 class="card-title">Amanda McDonald</h5>
+                    <p class="card-text text-muted">Founder & Lead Planner</p>
+                </div>
+            </div>
+        </div>
+        <!-- Team Member 2 -->
+        <div class="col-md-4 mb-4">
+            <div class="card border-0">
+                <img src="{{ url_for('static', filename='img/assistant-planner.jpg') }}" class="card-img-top rounded-circle team-photo" alt="Team Member 2">
+                <div class="card-body">
+                    <h5 class="card-title">Vincent McDonald</h5>
+                    <p class="card-text text-muted">Assistant Planner</p>
+                </div>
+            </div>
+        </div>
+        <!-- Team Member 3 -->
+        <div class="col-md-4 mb-4">
+            <div class="card border-0">
+                <img src="{{ url_for('static', filename='img/photographer.jpg') }}" class="card-img-top rounded-circle team-photo" alt="Team Member 3">
+                <div class="card-body">
+                    <h5 class="card-title">Robert Flock</h5>
+                    <p class="card-text text-muted">Photographer</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5 text-center">
+        <div class="col-md-10 mx-auto">
+            <p class="fs-5">
+                At Leonor Amor, every event is a story told through design, ambiance, and meticulous planning. Our team is dedicated to transforming your vision into unforgettable experiences.
+            </p>
+        </div>
+    </div>
+</div>
+    </div>
+
+
+<div class="container py-5">
+    <!-- START THE FEATURETTES -->
+    
+    <div class="row featurette">
+        <div class="col-md-7">
+            <h2 class="featurette-heading fw-normal lh-1">
+                AMERICAN OWNED & OPERATED
+            </h2>
+            <p class="lead text-start">We specialize in a wide array of professional event planning services. From home events and parties to elegant wedding and baby shower events, whatever your event needs are, Leonor Amor gets the job done.</p>
+        </div>
+        <div class="col-md-5">
+            <div class="card">
+                <img class="card-img featurette-image img-fluid mx-auto" style="height: 25rem" src="{{ url_for('static', filename='img/gallery_1.jpeg') }}" aria-label="Placeholder: 500x500" height="" preserveAspectRatio="xMidYMid slice" role="img" width="" xmlns="" />
+            </div>
+
+            <title>Placeholder</title>
+
+        </div>
+    </div>
+    <hr class="featurette-divider">
+    <div class="row featurette">
+        <div class="col-md-7 order-md-2">
+            <h2 class="featurette-heading fw-normal lh-1">LOCAL COMMUNITY </h2>
+            <p class="lead text-start">It is crucial to hire a skilled event planner who understands the needs of their community. Leonor Amor is the best in the business when providing the best experience to the community locally across the Treasure Coast and other state counties.</p>
+
+        </div>
+        <div class="col-md-5 order-md-1">
+            <div class="card">
+                <img class="card-img featurette-image img-fluid mx-auto" style="height: 25rem" src="{{ url_for('static', filename='img/ocean-sunset.jpg') }}" aria-label="Placeholder: 500x500" height="" preserveAspectRatio="xMidYMid slice" role="img" width="" xmlns="" />
+            </div>
+
+            <title>Placeholder</title>
+        </div>
+    </div>
+
+    
+</div>
+
+<div class="css-gray-background py-4">
+<div class="container">
+    <div class="h-100 d-flex align-items-center justify-content-center">
+        <h1 class="mt-2">Event Form</h1>
+    </div>
+    <h4>Contact us here if you have a specific event needing to be planned</h4>
+
+
+    <form method="POST" action="" enctype="multipart/form-data">
+	{{ form.csrf_token }}
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+
+            <div class="form-group">
+                {{ form.selection.label(class="form-control-label") }}
+                {{ form.selection(class="form-select w-100 p-3")}}
+
+
+                {{ form.email.label(class="form-control-label mt-1") }}
+
+                <!-- Error Messages -->
+                {% if form.email.errors %}
+                {{ form.email(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.email.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <!-- User Input -->
+                {{ form.email(class="form-control form-control-lg") }}
+                {% endif %}
+
+                {{ form.message.label(class="form-control-label") }}
+
+                <!-- Error Messages -->
+                {% if form.message.errors %}
+                {{ form.message(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.message.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <!-- User Input -->
+                {{ form.message(class="form-control form-control-lg") }}
+                {% endif %}
+
+
+
+
+                <div class="row mt-2">
+                    <div class="col-12 col-md-4 mb-3">
+                        {{ form.picture_1.label(class="form-control-label") }}
+
+                        <div class="custom-file-upload">
+                            {{form.picture_1(class="d-none", onchange="updateFileName(this)")}}
+
+                            <button type="button" class="btn btn-outline-secondary w-100"
+                                    onclick="this.previousElementSibling.click()">
+                                Choose file
+                            </button>
+
+                            <small class="file-name text-muted d-block mt-1">
+                                No file chosen
+                            </small>
+                        </div>
+
+                        {% if form.picture_1.errors %}
+                        <div class="text-danger small mt-1">
+                            {% for error in form.picture_1.errors %}
+                            {{ error }}
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="col-12 col-md-4 mb-3">
+                        {{ form.picture_2.label(class="form-control-label") }}
+
+                        <div class="custom-file-upload">
+                            {{form.picture_2(class="d-none", onchange="updateFileName(this)")}}
+
+                            <button type="button" class="btn btn-outline-secondary w-100"
+                                    onclick="this.previousElementSibling.click()">
+                                Choose file
+                            </button>
+
+                            <small class="file-name text-muted d-block mt-1">
+                                No file chosen
+                            </small>
+                        </div>
+
+                        {% if form.picture_2.errors %}
+                        <div class="text-danger small mt-1">
+                            {% for error in form.picture_2.errors %}
+                            {{ error }}
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="col-12 col-md-4 mb-3">
+                        {{ form.picture_3.label(class="form-control-label") }}
+
+                        <div class="custom-file-upload">
+                            {{form.picture_3(class="d-none", onchange="updateFileName(this)")}}
+
+                            <button type="button" class="btn btn-outline-secondary w-100"
+                                    onclick="this.previousElementSibling.click()">
+                                Choose file
+                            </button>
+
+                            <small class="file-name text-muted d-block mt-1">
+                                No file chosen
+                            </small>
+                        </div>
+
+                        {% if form.picture_3.errors %}
+                        <div class="text-danger small mt-1">
+                            {% for error in form.picture_3.errors %}
+                            {{ error }}
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="form-group mt-3">
+                    {{ form.submit(class="btn btn-outline-info") }}
+
+                    <small class="text-muted ml-2">
+                        By sending, you accept the
+                        <a href="{{ url_for('terms_of_service') }}">Terms of Services</a> and <a href="{{ url_for('privacy_policy') }}">Privacy Policy</a>.
+                    </small>
+
+                </div>
+
+        </fieldset>
+    </form>
+</div>
+    </div>
+    {% endblock content %}

@@ -1,0 +1,46 @@
+{% extends "abstracts/panel.html" %}
+
+{% block content %}
+    <div style="margin-left: 20%; margin-right: 7%; padding:1px 16px;height:1000px;">
+        <h1>Dashboard</h1>
+
+        <nav class="admin-dashboard-cards">
+
+            <h2><a href="{{ url_for('gallery_create') }}">Upload Gallery</a></h2>
+        
+        </nav>
+
+
+
+        <img style="margin-top: 15px; margin-right: 15px; float: left ;" src="{{ url_for('static', filename='img/icons/icons8-minimum-order-32.png') }}" alt="new messages" href="#website" height="25" width="50">
+
+        <h3>Gallery ({{ messages.count() }})</h3>
+        <div class="admin-new-orders table-responsive">
+            <table class="table">
+                <tr>
+                    <th>Picture</th>
+                    <th>Title</th>
+                    <th>Datetime</th>
+                    <th></th>
+                </tr>
+
+                {% for message in messages %}
+                <tr>
+                    <td><img class="mx-auto" height="64px" width="64px" src="{{ url_for('static', filename='img/db/products/' + fernet.decrypt(message.gallery_1.encode()).decode()) }}"></td>
+                    <td><a href="#">{{ fernet.decrypt(message.title.encode()).decode() }}</a></td>
+                    
+                    <td>{{ message.created.strftime('%b %d, %Y') }}
+                        <!--<a style ="float: right; margin-left: 10px;" href="#"><img class="img-fluid" width="25px" height="25px" src="{{ url_for('static', filename='img/icons/icons8-trash-50.png') }}"></a>-->
+                    </td>
+                    <td>
+                        <a style ="float: right; margin-left: 10px;" href="{{ url_for('gallery_delete', message_id=message.id) }}"><img class="img-fluid" width="25px" height="25px" src="{{ url_for('static', filename='img/icons/icons8-trash-50.png') }}"></a>
+                    </td>
+                </tr>
+                {% endfor %}
+
+            </table>
+        </div>
+
+
+    </div>
+{% endblock content %}

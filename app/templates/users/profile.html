@@ -1,0 +1,66 @@
+{% extends "abstracts/panel.html" %}
+
+{% block content %}
+    <div style="margin-left: 20%; margin-right: 7%; padding:1px 16px;height:1000px;">
+        <h1>Profile</h1>
+
+        <nav class="admin-dashboard-cards">
+            <div class="card-container">
+
+                <div class="card" style="background: #1E83C2">
+                    <h2>Edit Profile</h2>
+                    <img src="{{ url_for('static', filename='img/icons/icons8-messages-50.png') }}" alt="new messages" href="#website" height="45" width="90">
+                </div>
+
+                <div class="card" style="background: #5CE85B">
+                    <h2>Messages</h2>
+                    <img src="{{ url_for('static', filename='img/icons/icons8-list-64.png') }}" alt="new messages" href="#website" height="45" width="90">
+                </div>
+
+                <div class="card" style="background: #FFB64B">
+                    <h2>Orders</h2>
+                    <img src="{{ url_for('static', filename='img/icons/icons8-maximum-order-32.png') }}" alt="new messages" href="#website" height="45" width="90">
+                </div>
+
+                <div class="card" style="background: #E74F4B">
+                    <h2>Settings</h2>
+                    <img src="{{ url_for('static', filename='img/icons/icons8-profit-30.png') }}" alt="new messages" href="#website" height="45" width="90">
+                </div>
+
+            </div>
+        </nav>
+
+
+
+        <img style="margin-top: 15px; margin-right: 15px; float: left ;" src="{{ url_for('static', filename='img/icons/icons8-minimum-order-32.png') }}" alt="new messages" href="#website" height="25" width="50">
+
+        <h3>Hello {{ user.email }}</h3>
+        <div class="admin-new-orders">
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Admin</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Username</th>
+                    <th>Name</th>
+                    <th>Created</th>
+                </tr>
+                {% for user in users %}
+                <tr>
+                    <td><a href="#">{{ user.id }}</a></td>
+                    <td>{{ user.admin }}</td>
+                    <td><a href="#">{{ user.email }}</a></td>
+                    <td>{{ user.phone }}</td>
+                    <td>{{ user. username }}</td>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.created }} - </td>
+                </tr>
+                {% endfor %}
+
+            </table>
+        </div>
+
+
+    </div>
+{% endblock content %}

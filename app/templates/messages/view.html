@@ -1,0 +1,63 @@
+{% extends "abstracts/panel.html" %}
+
+{% block content %}
+    <div style="margin-left: 20%; margin-right: 7%; padding:1px 16px;height:1000px;">
+
+        <h3>Messages</h3>
+        <div class="admin-new-orders">
+            <div class="content-section">
+                        
+                <div class="form-group">
+                    <legend class="form-control-label">Email</legend>
+                    <input class="form-control form-control-lg" placeholder="{{ fernet.decrypt(message.title.encode()).decode() }}" readonly />
+
+                    <legend class="form-control-label">Message</legend>
+                    <textarea class="form-control form-control-lg" placeholder="{{ fernet.decrypt(message.description.encode()).decode() }}" readonly></textarea>
+                    
+                
+                    <div class="container">
+                        <div class="row">
+                            {% if message.gallery_1 %}
+                            
+                                <div class="col col-md-4 col-12 mb-3">
+                                    <div class="card">
+                                        <img src="{{ url_for('static', filename='img/db/products/' + fernet.decrypt(message.gallery_1.encode()).decode()) }}" class="card-img-top" alt="...">
+                                        
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}    
+
+                            {% if message.gallery_2 %}
+                            
+                                <div class="col col-md-4 col-12 mb-3">
+                                    <div class="card">
+                                        <img src="{{ url_for('static', filename='img/db/products/' + fernet.decrypt(message.gallery_2.encode()).decode()) }}" class="card-img-top" alt="...">
+                                        
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}   
+
+                            {% if message.gallery_3 %}
+                            
+                                <div class="col col-md-4 col-12 mb-3">
+                                    <div class="card">
+                                        <img src="{{ url_for('static', filename='img/db/products/' + fernet.decrypt(message.gallery_3.encode()).decode()) }}" class="card-img-top" alt="...">
+                                        
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}   
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+{% endblock content %}

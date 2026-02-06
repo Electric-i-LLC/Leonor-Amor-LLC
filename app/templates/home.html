@@ -1,0 +1,307 @@
+{% extends "abstracts/index.html" %}
+
+{% block content %}
+<!-- Has to be added in HTML section for Jinja2 variables -->
+<style>
+        .gallery-slide-track
+        {
+            display: flex ;
+            width: calc(250px * 2 * {{ messages.count() }}) ;
+            animation: scroll 40s linear infinite ;
+        }
+
+        @keyframes scroll
+        {
+            0%
+            {
+                transform: translateX(0) ;
+            }
+            100%
+            {
+                transform: translateX(calc(-250px * {{ messages.count() }}))
+            }
+        }
+</style>
+
+<header class="css-hero-home p-4 bg-light rounded-3">
+
+    <div class="container-fluid">
+        <h1 class="display-5 fw-bold" style="color: #785C1B; font-family: cursive;">
+            Leonor Amor </h2>
+            <p class="col-md-8 lead" style="color: white">Need an event planned? We can make your vision come to fruition!</p>
+
+            <p class="col-md-8 lead" style="color: white">Photography, catering, music, marketing, and more all professionaly handled by us.</p>
+
+
+
+    </div>
+</header>
+
+
+
+
+<!-- Item cards-->
+<section class="css-gray-background pb-4">
+    <p class="lead p-2" style="text-align: center">Most Recent Events</p>
+
+    <div class="gallery-grid">
+        <div class="gallery-slider">
+            <div class="gallery-slide-track">
+
+                {% for message in messages %}
+                <div class="gallery-slide">
+                    <a href="#"><img src="{{ url_for ('static', filename='img/db/products/' + fernet.decrypt(message.gallery_1.encode()).decode()) }}" alt="..."></a>
+                </div>
+                {% endfor %}
+
+                {% for message in messages %}
+                <div class="gallery-slide">
+                    <a href="#"><img src="{{ url_for ('static', filename='img/db/products/' + fernet.decrypt(message.gallery_1.encode()).decode()) }}" alt="..."></a>
+                </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<div class="container py-4">
+    <div class="row justify-content-center text-center mb-5">
+        <div class="col-md-8">
+            <h2 class="display-5">Our Services</h2>
+            <p class="lead mt-3">
+                We specialize in creating bespoke experiences tailored to your event&apos;s needs.
+            </p>
+        </div>
+    </div>
+
+    <div class="row text-center">
+        <div class="col-md-4 mb-4">
+            <div class="card service-card h-100 border-0">
+                <img src="{{ url_for('static', filename='img/wedding-planning.jpg') }}" class="card-img-top service-img" alt="Wedding Planning">
+                <div class="card-body">
+                    <h5 class="card-title">Weddings</h5>
+                    <p class="card-text text-muted">Full-service wedding planning and design for unforgettable celebrations.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card service-card h-100 border-0">
+                <img src="{{ url_for('static', filename='img/coporate-event.jpg') }}" class="card-img-top service-img" alt="Corporate Events">
+                <div class="card-body">
+                    <h5 class="card-title">Corporate Events</h5>
+                    <p class="card-text text-muted">Professional planning for corporate galas, meetings, and team experiences.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card service-card h-100 border-0">
+                <img src="{{ url_for('static', filename='img/private-party.webp') }}" class="card-img-top service-img" alt="Private Parties">
+                <div class="card-body">
+                    <h5 class="card-title">Private Parties</h5>
+                    <p class="card-text text-muted">Exclusive celebrations, milestone birthdays, and intimate gatherings planned perfectly.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr class="featurette-divider"> <!-- /END THE FEATURETTES -->
+</div>
+
+
+
+<div class="container py-3">
+    <div class="row justify-content-center text-center mb-5">
+        <div class="col-md-8">
+            <h2 class="display-5">Book a Consultation</h2>
+            <p class="lead mt-3">
+                Please select a preferred date and send us your event details. We'll get back to you promptly.
+            </p>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+
+            <!-- Fake Calendar -->
+            <div class="availability-card p-4">
+                <div class="text-center mb-4">
+                    <h5 class="mb-2">Availability Preview</h5>
+                    <p class="text-muted mb-0">
+                        Select a date to request a consultation
+                    </p>
+                </div>
+
+                <div class="calendar">
+                    <div class="calendar-header">
+                        <button type="button" class="cal-btn" id="prevMonth">&lt;</button>
+                        <div id="monthYear"></div> <!-- <--- add this -->
+                        <button type="button" class="cal-btn" id="nextMonth">&gt;</button>
+                    </div>
+
+                    <div class="calendar-grid">
+                        <div class="day-name">Sun</div>
+                        <div class="day-name">Mon</div>
+                        <div class="day-name">Tue</div>
+                        <div class="day-name">Wed</div>
+                        <div class="day-name">Thu</div>
+                        <div class="day-name">Fri</div>
+                        <div class="day-name">Sat</div>
+                    </div>
+
+                    <div class="calendar-grid" id="calendarDays"></div>
+                </div>
+
+                <!-- Time Selection -->
+                <div class="mt-4">
+                    <label for="timeSelect" class="form-label fw-semibold text-muted">
+                        Preferred Time
+                    </label>
+
+                    <select id="timeSelect"
+                            class="form-select form-select-lg w-100 shadow-sm rounded-3 p-3"
+                            disabled>
+                        <option value="">Select a time</option>
+                    </select>
+                </div>
+
+                <div class="mt-4">
+                    <!-- Email -->
+                    <label for="emailInput" class="form-label fw-semibold text-muted">
+                        Email Address
+                    </label>
+                    <input type="email"
+                           id="emailInput"
+                           class="form-control form-control-lg shadow-sm rounded-3"
+                           placeholder="you@example.com"
+                           required>
+                </div>
+
+                <div class="mt-4">
+                    <!-- Phone -->
+                    <label for="phoneInput" class="form-label fw-semibold text-muted d-flex align-items-center">
+                        Phone Number <span class="text-muted fw-normal ms-1 px-1"> (optional)</span>
+
+                        <!-- Messaging Apps Inline -->
+                        <span class="ms-3 d-flex align-items-center px-2">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="whatsapp">
+                                <label class="form-check-label" for="whatsapp">
+                                    <img src="{{ url_for('static', filename='img/icons/icons8-whatsapp-48.png') }}" alt="WhatsApp" style="height: 24px; width: 24px;">
+                                </label>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="telegram">
+                                <label class="form-check-label" for="telegram">
+                                    <img src="{{ url_for('static', filename='img/icons/icons8-telegram-48.png') }}" alt="Telegram" style="height: 24px; width: 24px;">
+                                </label>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="signal">
+                                <label class="form-check-label" for="signal">
+                                    <img src="{{ url_for('static', filename='img/icons/icons8-signal-48.png') }}" alt="Signal" style="height: 24px; width: 24px;">
+
+                                </label>
+                            </div>
+
+
+                        </span>
+                    </label>
+
+                    <input type="tel"
+                           id="phoneInput"
+                           class="form-control form-control-lg shadow-sm rounded-3 mt-2"
+                           placeholder="+1 (772) 123-4567">
+                </div>
+
+                <small class="text-muted ml-2">
+                    By requesting, you accept the
+                    <a href="{{ url_for('terms_of_service') }}">Terms of Services</a> and <a href="{{ url_for('privacy_policy') }}">Privacy Policy</a>.
+                </small>
+
+
+                <div class="text-center mt-4">
+                    <button id="confirmCalendar" class="btn btn-outline-info btn-lg d-inline-block">
+                        Request Consultation
+                    </button>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Reviews Section -->
+<div class="container-fluid css-gray-background py-5">
+    <div class="container">
+        <div class="row justify-content-center text-center mb-4">
+            <div class="col-md-8">
+                <h2 class="display-6">What Our Clients Say</h2>
+                <p class="lead text-muted">
+                    Hear from some of the amazing people we've helped plan unforgettable events.
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Single Review -->
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                        <p class="card-text fst-italic">
+                            "Leonor Amor made our wedding day absolutely magical! Every detail was perfect."
+                        </p>
+                        <h6 class="card-subtitle mt-3 text-end text-secondary">&#8208; Hannah & Butchie</h6>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                        <p class="card-text fst-italic">
+                            "The corporate retreat was flawless. Professional, creative, and seamless."
+                        </p>
+                        <h6 class="card-subtitle mt-3 text-end text-secondary">&#8208; L.I.C. Tonsorial.</h6>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                        <p class="card-text fst-italic">
+                            "From start to finish, every event detail exceeded our expectations."
+                        </p>
+                        <h6 class="card-subtitle mt-3 text-end text-secondary">&#8208; Aengelica R.</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<!--
+<div class="container">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3531.0053269510427!2d-80.4490146!3d27.7479817!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88de5d64992d030d%3A0x4a1f7278647bd4ab!2s5973%20Ridge%20Lake%20Cir%2C%20Vero%20Beach%2C%20FL%2032967!5e0!3m2!1sen!2sus!4v1767630037757!5m2!1sen!2sus" alt="Google Maps & Reviews" width="100%" height="400px"style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
+-->
+{% endblock content %}
+
+

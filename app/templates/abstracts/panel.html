@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content="Janoher">
+
+        <link rel="icon" href="{{ url_for('static', filename='img/logo-dark.jpeg') }}">
+        
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    
+        {% if title %}
+            <title>Leonor Amor - {{ title }}</title>
+        {% else %}
+            <title>Leonor Amor </title>
+        {% endif %}
+    </head>
+
+
+
+    <body>
+        <!-- Sticky top navigation -->
+        <header>
+            <nav class="admin-nav-top">
+                <ul>
+                    <li style="float:right"><a class="active" href="{{ url_for('home') }}">Main Website</a></li>
+                </ul>
+            </nav>
+        </header>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+
+				{% if messages %}
+
+					{% for category, message in messages %}
+
+						<div class="alert alert-{{ category }}">
+							{{ message }}
+						</div>
+					{% endfor %}
+
+				{% endif %}
+			{% endwith %}
+
+
+        {% block abstract %}
+        {% endblock abstract %}
+
+        <!-- Sticky side nav-->
+        <nav class="admin-nav-side">
+            <ul>
+                
+                <li><a href="#">Calendar</a></li>
+                <li><a href="{{ url_for('messages_dashboard') }}">Messages</a></li>
+                
+                <li><a href="{{ url_for('gallery_dashboard') }}">Gallery</a></li>
+                <li><a href="{{ url_for('users') }}">Users</a></li>
+                <!--<li><a href="https://dashboard.stripe.com/" target="_blank">Payments</a></li>-->
+                
+            </ul>
+        </nav>
+
+        <!-- Sticky side nav-->
+        <nav class="admin-nav-side">
+            <ul>
+                
+                {% if title == 'Calendar Dashboard' %}
+                    <li><a class="active" href="{{ url_for('calendar_dashboard') }}">Calendar</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('calendar_dashboard') }}">Calendar</a></li>
+                {% endif %}
+                {% if title == 'Messages Dashboard' %}
+                    <li><a class="active" href="{{ url_for('messages_dashboard') }}">Messages</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('messages_dashboard') }}">Messages</a></li>
+                {% endif %}
+
+               
+                {% if title == 'Gallery Dashboard' %}
+                    <li><a class="active" href="{{ url_for('gallery_dashboard') }}">Gallery</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('gallery_dashboard') }}">Gallery</a></li>
+                {% endif %}
+                {% if title == 'Users Dashboard' %}
+                    <li><a class="active" href="{{ url_for('users') }}">Users</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('users') }}">Users</a></li>
+                {% endif %}
+                <!--<li><a href="https://dashboard.stripe.com/" target="_blank">Payments</a></li>-->
+                
+            </ul>
+        </nav>
+
+    
+        {% block content %}
+        {% endblock %}
+
+
+        <footer>
+        </footer>
+
+
+
+        <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+    </body>
+</html>
+
+
+<!--
+    tel:7725322664\
+    email:camerontrent10@gmail.com
+
+    FB: https://www.facebook.com/people/Arky-Sparky-Welding-Fabrication-LLC/100093028497928/
+
+    IG: https://www.instagram.com/camerondeantrent/
+
+    TikTok: https://www.tiktok.com/@camerontrent0
+-->

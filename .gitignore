@@ -1,0 +1,48 @@
+# Python bytecode files
+__pycache__/
+*.py[cod]
+
+# Flask configuration
+instance/
+.env
+
+# Virtual environment
+venv/
+env/
+.venv/
+
+# Database files
+*.sqlite
+*.db
+*.sql
+
+# IDEs and editors
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Operating system-specific files
+.DS_Store
+Thumbs.db
+
+# Log files
+*.log
+
+# Flask migrations folder (optional, if you don't want to commit migrations)
+# migrations/
+
+# pytest cache
+.cache
+
+# Other build-related files
+*.egg-info/
+*.dist-info/
+*.egg
+*.tar.gz
+*.tar
+
+
+# Ignore all files in the products folder
+app/static/img/db/products/*
+!app/static/img/db/products/.gitkeep

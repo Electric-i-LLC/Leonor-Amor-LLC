@@ -1,0 +1,49 @@
+{% extends "abstracts/index.html" %}
+
+{% block content %}
+
+<header class="p-4 bg-light rounded-3">
+    <div class="container-fluid">
+        <h4>Messages (<a class="text-warning" href="#">?</a>)</h4>
+    </div>
+</header>
+
+<div class="container h-scroll" >
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Status</th>
+                <th>Datetime</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td><a class="text-info" href="#">Manican</a></td>
+                <td><span class="text-success">Opened</span></td>
+                <td>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                Today
+                            </div>
+                            <div class="col col-5 col-md-3 col-lg-2">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col">
+                                            <button class="btn btn-danger">Delete</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+{% endblock content %}

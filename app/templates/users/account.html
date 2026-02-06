@@ -1,0 +1,72 @@
+{% extends "abstracts/index.html" %}
+
+{% block content %}
+
+<header class="p-4 bg-light rounded-3">
+    <div class="container-fluid">
+        <h4><a class="text-info">{{ current_user.email }}</a></h4>
+    </div>
+</header>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <button class="btn btn-info">Messages (0)</button>
+        </div>
+        <div class="col">
+            <button class="btn btn-success">Orders (0)</button>
+        </div>
+        <div class="col">
+            <button class="btn btn-danger">Edit profile</button>
+        </div>
+        <div class="col">
+            <a href="{{ url_for('logout') }}"><button class="btn btn-warning">Logout</button></a>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col">
+            <h6>First Name</h6>
+            <input readonly class="form-control" placeholder="Richard"></input>
+        </div>
+        <div class="col">
+            <h6>Last Name</h6>
+            <input readonly class="form-control" placeholder="Janoher"></input>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="mt-2 col col-12 col-lg-3">
+            <h6>Street</h6>
+            <input readonly class="form-control" placeholder="123 Banana St">
+        </div>
+
+        <div class="mt-2 col col-6 col-lg-1">
+            <h6>No</h6>
+            <input readonly class="form-control" placeholder="">
+        </div>
+
+        <div class="mt-2 col col-6 col-lg-2">
+            <h6>City</h6>
+            <input readonly class="form-control" placeholder="Vero Beach">
+        </div>
+
+        <div class="mt-2 col col-3 col-lg-1">
+            <h6>State</h6>
+            <input readonly class="form-control" placeholder="">
+        </div>
+
+        <div class="mt-2 col col-3 col-lg-2">
+            <h6>Zipcode</h6>
+            <input readonly class="form-control" placeholder="">
+        </div>
+
+        <div class="mt-2 col col-6 col-lg-3">
+            <h6>Country</h6>
+            <input readonly class="form-control" placeholder="">
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
