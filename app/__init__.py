@@ -38,7 +38,7 @@ with create_app.app_context():
 create_app.config['MAIL_SERVER'] = os.getenv('MAIL_SERVER')
 create_app.config['MAIL_PORT'] = os.getenv('MAIL_PORT')
 create_app.config['MAIL_USE_TLS'] = os.getenv('MAIL_USE_TLS')
-#create_app.config['MAIL_USE_SSL'] = os.getenv('MAIL_USE_SSL')
+create_app.config['MAIL_USE_SSL'] = os.getenv('MAIL_USE_SSL')
 create_app.config['MAIL_USERNAME'] = os.getenv('MAIL_USERNAME')
 create_app.config['MAIL_PASSWORD'] = os.getenv('MAIL_PASSWORD')
 mail = Mail(create_app)

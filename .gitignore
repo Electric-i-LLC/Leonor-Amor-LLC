@@ -17,6 +17,7 @@ env/
 *.sql
 
 # IDEs and editors
+.vs/
 .vscode/
 .idea/
 *.sublime-project

@@ -1,20 +1,48 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="author" content="Janoher">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Janoher">
 
-        <link rel="icon" href="{{ url_for('static', filename='img/logo-dark.jpeg') }}">
-        
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
-    
-        {% if title %}
-            <title>Leonor Amor - {{ title }}</title>
-        {% else %}
-            <title>Leonor Amor </title>
-        {% endif %}
-    </head>
+    <link rel="icon" href="{{ url_for('static', filename='img/logo-dark.jpeg') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+
+    <!-- Admin Manifest -->
+    <link rel="manifest" href="{{ url_for('manifest_admin') }}" id="manifest-link">
+
+    <!-- Apple Touch Icon for iOS -->
+    <link rel="apple-touch-icon" href="/static/images/icon-dark-180x180.png">
+
+    <!-- Fullscreen for iOS (Apple devices) -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">  <!-- Customize status bar color -->
+    <meta name="apple-mobile-web-app-title" content="Leonor Amor LLC">  <!-- Title shown on home screen -->
+    <!-- Fullscreen for Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#000000"> <!-- Customize status bar color for Android -->
+
+    <!-- Include the Service Worker -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/js/service-worker.js')
+                .then(function (registration) {
+                    console.log('Service Worker registered with scope:', registration.scope);
+                })
+                .catch(function (error) {
+                    console.log('Service Worker registration failed:', error);
+                });
+        }
+    </script>
+
+
+    {% if title %}
+    <title>Leonor Amor LLC - {{ title }}</title>
+    {% else %}
+    <title>Leonor Amor LLC </title>
+    {% endif %}
+</head>
 
 
 

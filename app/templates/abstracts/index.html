@@ -10,6 +10,53 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
 
+
+    <!-- Public Manifest -->
+    <link rel="manifest" href="{{ url_for('manifest_public') }}" id="manifest-link">
+
+    <!-- Apple Touch Icon for iOS -->
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='img/logo-light-180x180.png') }}">
+
+    <!-- iOS Splash Screens --><!--
+    <link rel="apple-touch-startup-image" href="/static/img/splash-640x1136.png" media="(device-width: 320px)">
+    <link rel="apple-touch-startup-image" href="/static/img/splash-750x1334.png" media="(device-width: 375px)">
+    <link rel="apple-touch-startup-image" href="/static/img/splash-1242x2208.png" media="(device-width: 414px)">
+    
+    <link rel="apple-touch-startup-image" href="/static/img/splash-1125x2436.png" media="(device-width: 375px)">
+    <link rel="apple-touch-startup-image" href="/static/img/splash-828x1792.png" media="(device-width: 414px)">
+    <link rel="apple-touch-startup-image" href="/static/img/splash-1242x2688.png" media="(device-width: 414px)">
+    <link rel="apple-touch-startup-image" href="/static/img/splash-1080x2340.png" media="(device-width: 360px)">
+    <link rel="apple-touch-startup-image" href="/static/img/splash-1170x2532.png" media="(device-width: 390px)">
+    <link rel="apple-touch-startup-image" href="/static/img/splash-1284x2778.png" media="(device-width: 430px)">
+    <link rel="apple-touch-startup-image" href="/static/img/splash-1080x2340.png" media="(device-width: 375px)">
+    <link rel="apple-touch-startup-image" href="/static/img/splash-1290x2796.png" media="(device-width: 430px)">
+
+	-->
+
+
+    <!-- Fullscreen for iOS (Apple devices) -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">  <!-- Customize status bar color -->
+    <meta name="apple-mobile-web-app-title" content="Leonor Amor">  <!-- Title shown on home screen -->
+
+    <!-- Fullscreen for Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#000000"> <!-- Customize status bar color for Android -->
+
+    <!-- Include the Service Worker -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('static/js/service-worker.js')
+                .then(function (registration) {
+                    console.log('Service Worker registered with scope:', registration.scope);
+                })
+                .catch(function (error) {
+                    console.log('Service Worker registration failed:', error);
+                });
+        }
+    </script>
+
+
     {% if title %}
     <title>Leonor Amor - {{ title }}</title>
     {% else %}

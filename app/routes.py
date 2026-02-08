@@ -1,4 +1,4 @@
-from flask import render_template, url_for, redirect, request, flash, abort, make_response, jsonify
+from flask import render_template, url_for, redirect, request, flash, abort, make_response, jsonify, send_from_directory, send_file
 from app import create_app, db, bcrypt, mail
 
 from app.utils import (save_picture, const_hash,  delete_picture, send_email)
@@ -294,6 +294,34 @@ def privacy_policy():
 
 
 
+
+
+
+
+
+
+
+'''
+@create_app.route('/manifest-public.json')
+def manifest_public():
+    return send_from_directory('static', 'json/manifest-public.json')
+'''
+@create_app.route('/manifest-public.json')
+def manifest_public():
+    return send_file('static', 'json/manifest-public.json', mimetype='application/manifest+json')
+
+
+@create_app.route('/manifest-admin.json')
+def manifest_admin():
+    return send_file('static', 'json/manifest-admin.json', mimetype='application/manifest+json')
+
+@create_app.route('/service-worker.js')
+def service_worker():
+    return send_file('static', 'js/service-worker.js', mimetype='application/javascript')
+
+@create_app.route('/offline/')
+def offline():
+    return render_template('errors/offline.html')
 
 
 

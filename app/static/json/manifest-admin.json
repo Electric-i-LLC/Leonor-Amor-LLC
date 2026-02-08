@@ -1,0 +1,26 @@
+{
+  "name": "Leonor Amor (Admin)",
+  "short_name": "Leonor Amor LLC",
+  "description": "Admin Panel",
+  "start_url": "/admin",
+  "display": "standalone",
+  "background_color": "#333333", // Dark background for admin
+  "theme_color": "#111111", // Dark theme color for admin
+  "icons": [
+    {
+      "src": "../static/img/logo-dark-192x192.png", // Android and web
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "../static/img/logo-dark-512x512.png", // Android
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+    {
+      "src": "../static/img/logo-dark-180x180.png", // iOS
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}
